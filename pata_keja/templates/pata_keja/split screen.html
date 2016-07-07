@@ -1,0 +1,43 @@
+<head>
+<meta name="viewport" content="width=device-width, initial-
+scale=1.0">
+<link href="css/splitscreen.css" rel="stylesheet" media="screen">
+<link href="pata_keja/styles.css" rel="stylesheet" media="screen">
+
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <link href="{% static 'css/splitscreen.css' %}" rel="stylesheet">
+	<script href="{% static 'js/splitscreen.js' %}"/>
+</head>
+
+<div class="container">
+	<div id="splitlayout" class="splitlayout">
+		<div class="intro">
+			<div class="side side-left">
+				<div class="overlay"></div>
+			</div>
+			<div class="side side-right">
+				<div class="overlay"></div>
+			</div>
+		</div><!-- /intro -->
+		<div class="page page-right page-large">
+			<div class="page-inner">
+				<section>
+					<!-- content -->
+				</section>
+				<section>
+					<!-- content -->
+				</section>
+				<!-- ... -->
+			</div><!-- /page-inner -->
+		</div><!-- /page-right -->
+		<div class="page page-left page-fill">
+			<div class="page-inner">
+				<!-- ... -->
+			</div><!-- /page-inner -->
+		</div><!-- /page-left -->
+		<a href="#" class="back back-right" title="back to intro">→</a>
+		<a href="#" class="back back-left" title="back to intro">←</a>
+	</div><!-- /splitlayout -->
+</div><!-- /container -->
+

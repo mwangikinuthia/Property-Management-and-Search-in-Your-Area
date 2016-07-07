@@ -1,0 +1,6 @@
+{{ object.house_type}}
+{{ object.tags.all|join:", "}}
+{{ object.image }}
+{{ object.plot.location }}
+{{ object.rent_per_month }}
+{{ object.house_owner }}

@@ -1,0 +1,15 @@
+{% extends "pata_keja/dash.html" %}
+
+{% block title %}caretaker_form{% endblock %}
+
+{% block content%}
+<div class="container">
+<table>
+<form action="." method="post">
+            {{ caretaker_form.as_table }}
+            {% csrf_token %}
+            <p><input type="submit" value="add"></p>
+</form>
+</table>
+</div>
+{% endblock %}

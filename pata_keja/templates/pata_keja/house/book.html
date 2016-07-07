@@ -1,0 +1,17 @@
+{% extends "pata_keja/dash.html" %}
+
+{% block title %}Booking{% endblock %}
+
+{% block content %}
+<p>Booking lasts for 72Hrs only.</p>
+<p>so its advisable to contanct owner imidiately after booking</p>
+<p>and make necessary payments so as he/she can remove the house from available lists</p>
+
+<table>
+<form action="." method="post">
+            {{ booking_form.as_table }}
+            {% csrf_token %}
+            <p><input type="submit" value="book"></p>
+</form>
+</table>
+{% endblock %}

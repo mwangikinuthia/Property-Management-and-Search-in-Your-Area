@@ -1,0 +1,64 @@
+{% extends "pata_keja/dash.html" %}
+{% load static %}
+{% load thumbnail %}
+{% block title %}available houses-to-let{% endblock %}
+<p class="text-center">
+{% block content %}
+<style>
+#head {
+padding-top: 25px;
+padding-bottom: 25px;
+padding-right: 50px;
+padding-left: 50px;
+}
+</style>
+<div class="container">
+<p class="text-right">
+<a href="{% url "pata_keja:house_search" %}"><button type="submit" class="btn btn-default"><span
+class="glyphicon glyphicon-login"></span> Search</button></a> </p>
+<p class="text-center">Top Estate to live in is currently
+{% for x in x %}
+<a href="/patakeja/plot-detail/{{x.id}}">{{x.name}}</a> located in {{x.location}}
+{% endfor %}
+</p>
+	<div class="col-md-12">
+	{% if tag %}
+        <h2>Houses tagged with "{{ tag.name }}"</h2>
+    {% endif %}
+	{% for areas in top_places %}
+		<li>{{areas.location}}</li>
+		{% endfor %}
+    {% for house in houses %}
+
+
+        
+<div class="thumbnail">
+
+<a href="/patakeja/house/{{house.id}}">
+<img src="{% if house.image %}{{ house.image.url }}{% else %}{% static "img/x.png" %}{% endif %} "height="250" width="200" >
+</a>
+
+</div>
+		<p class="tags">
+            Tags: 
+            {% for tag in house.tags.all %}
+				
+                <a href="{% url "pata_keja:house_list_by_tag" tag.slug %}">{{ tag.name }}</a>
+                {% if not forloop.last %} ,{% endif %}
+            {% endfor %}
+        </p>
+		
+        <p class="date">Created {{ house.created }}</p>
+        {{ house.house_desc|truncatewords:30|linebreaks }}
+    {% endfor %}
+{% if h in top_5 %}
+present
+{% else %}
+not present 
+{% endif %}
+
+    
+    {% include "pagination.html" with page=houses %}
+</div>
+</div>
+{% endblock %}

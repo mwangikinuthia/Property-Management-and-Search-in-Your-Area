@@ -1,0 +1,32 @@
+{% extends "pata_keja/dash.html" %}
+{% load static %}
+{% block title %}Search{% endblock %}
+{% block content %}
+{% if "query" in request.GET %}
+<h4>houses containing "{{ cd.query }}"</h4>
+<h4>Found {{ total_results }} result{{ total_results|pluralize}}</h4>
+{% for result in results %}
+{% with house=result.object %}
+<h4><a href="/patakeja/house/{{house.id}}/">{{ house.house_type }}</a></h4>
+<p ><h4 class="text-center">house photos<h4></p>
+<div class="thumbnail">
+<a href="/patakeja/house/{{house.id}}">
+<img src="{% if house.image %}{{ house.image.url }}{% else %}{% static "img/x.png" %}{% endif %} "height="250" width="200" >
+<img src="{% if house.image_2 %}{{ house.image_2.url }}{% endif %} "height="200" width="210" >
+</a>
+</div>
+
+{{ house.house_desc|truncatewords:5 }}
+{% endwith %}
+{% empty %}
+<p>There are no results for your query.</p>
+{% endfor %}
+<p><a href="{% url "pata_keja:house_search" %}">Search again</a></p>
+{% else %}
+<h1>Search for houses</h1>
+<form action="." method="get">
+{{ form.as_p }}
+<input type="submit" value="Search">
+</form>
+{% endif %}
+{% endblock %}

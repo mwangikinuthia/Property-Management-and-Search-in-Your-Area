@@ -1,0 +1,34 @@
+{% load house_tags %}
+{% load staticfiles %}
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-
+scale=1.0">
+<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+<link href="pata_keja/styles.css" rel="stylesheet" media="screen">
+
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    <link href="{% static 'css/blog.css' %}" rel="stylesheet">
+</head>
+<body>
+<ul class="pager">
+<li class="previous enabled"><a href="/patakeja">&larr; Back</a></li>
+{%if request.user.is_authenticated %}
+<li class="next"><a href="{% url 'accounts:logout' %}">Log Out</a></li>
+{% else %}
+<li class="next"><a href="{% url 'accounts:login' %}">Log In</a></li>
+{% endif %}
+</ul>
+<p class="text-right">
+<a href="{% url 'pata_keja:house_search' %}"><button type="submit" class="btn btn-default"><span
+class="glyphicon glyphicon-login"></span> Search</button></a> </p>
+    <div id="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+    
+</div>
+</p>
+</body>
+</html>

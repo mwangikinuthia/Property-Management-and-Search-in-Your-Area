@@ -1,0 +1,40 @@
+{% extends "pata_keja/dash.html" %}
+{% load static %}
+
+{% block title %}available houses-to-let{% endblock %}
+
+{% block content %}
+<div class="container">
+<div class="row">
+<div class="col-md-6">
+    
+	 <p>You have  <span class="badge">{{v}}</span> listed houses-to-let.</p>
+	{% if tag %}
+        <h2>Houses tagged with "{{ tag.name }}"</h2>
+    {% endif %}
+    {% for house in houses %}
+	
+        <h3><a href="/patakeja/house/{{house.id}}/">plot:{{house.plot}} house id {{ house.id }}</a></h3>
+		
+		
+		
+            Tags: 
+            {% for tag in house.tags.all %}
+                <a href="{% url "pata_keja:house_list_by_tag" tag.slug %}">{{ tag.name }}</a>
+                {% if not forloop.last %} ,{% endif %}
+            {% endfor %}
+        </p>
+	<div class="thumbnail">
+<a href="/patakeja/house/{{house.id}}">
+<p class="image-short" ><img src="{% if house.image %}{{ house.image.url }}{% else %}{% static "img/x.png" %}{% endif %} "height="250" width="360" >
+	<button type="button" class="btn btn-primary"><a href="{% url "pata_keja:delete" house.id%}">Delete</a></button>
+		<button type="button" class="btn btn-primary"><a href="{% url "pata_keja:update" pk=house.id %}">Update</a></button>
+		
+        <p class="date">Created {{ house.created }}</p>
+        {{ house.house_desc|truncatewords:30|linebreaks }}
+    {% endfor %}
+    
+    {% include "pagination.html" with page=houses %}
+</div>
+</div>
+{% endblock %}

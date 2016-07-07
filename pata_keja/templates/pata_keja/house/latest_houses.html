@@ -1,0 +1,9 @@
+<ul>
+{% for house in latest_houses %}
+	<li>
+		<a href="/patakeja/house/{{house.id}}/">{{house.location}}</a>
+	</li>
+{% endfor %}
+</ul>
+
+

@@ -1,0 +1,4 @@
+{{ object.name}}
+{{ objects.tags.all|join:", "}}
+{{ object.caretaker }}
+{{ object.water_availabity }}

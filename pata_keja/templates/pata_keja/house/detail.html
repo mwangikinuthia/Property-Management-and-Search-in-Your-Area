@@ -1,0 +1,153 @@
+{% extends "pata_keja/base.html" %}
+{% load static %}
+{% load house_tags %}
+{% block title %}{{ house.house_location}}{% endblock %}
+
+{% block content %}
+
+<body >
+
+
+<div class="container" >
+<p class="text-center">{{house.plot.location}}</p>
+
+<p class="date">uploaded {{ house.created }}...</p>
+
+<div class="row">
+<div class="col-md-8">
+<table class="table">
+<thead>
+<tr>
+<th>Location</th>
+<th>Type</th>
+<th>Rent-per-month</th>
+<th>Caretaker</th>
+</tr>
+</thead>
+<tbody>
+<tr class="success">
+<td><a href="/patakeja/search/?query={{details.location}}">{{details.location}}</td>
+<td><a href="/patakeja/search/?query={{house.house_type}}">{{house.house_type}}</a></td>
+<td>{{house.rent_per_month}}</td>
+<td><a href="/patakeja/search/?query={{house.house_owner}}">{{house.house_owner}}</a></td>
+</tr>
+</tbody>
+</table>
+<table class="table">
+
+<thead>
+<tr>
+
+<th>Plot/Estate</th>
+<th>Security Rating</th>
+<th>You pay this bills</th>
+<th>Contanct</th>
+</tr>
+</thead>
+<tbody>
+<tr class="active">
+
+<td><a href="/patakeja/search/?query={{house.plot}}">{{house.plot}}</a></td>
+<td>{{details.location_security}}</td>
+<td>{{house.house_bills}}</td>
+<td>0{{details.contanct}}</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+<div class="col-md-4">
+<div class="center-block" style="width:350px;background-color:#ccc;">
+<h4>Similar houses</h4>
+{% for house in similar_houses %}
+<p>
+<a href="/patakeja/house/{{house.id}}/">{{house.house_type}} {{house.plot.location}}</a>
+</p>
+{% empty %}
+There are no similar houses yet.
+{% endfor %}
+</div>
+<div class="center-block" style="width:350px;background-color:#ccc;">
+<h4>Top houses</h4>
+{% trending as top_houses %}
+{% for house in top_houses %}
+<p><a href="/patakeja/house/{{house.id}}">{{house.house_type}}   {{house.plot.location}}</a></p>
+{% endfor %}
+</div>
+
+<div class="center-block" style="width:350px;background-color:#ccc;">
+<h4>Top Estates/Plots</h4>
+{% top_plots as top_plots %}
+{% for plot in top_plots %}
+<p><a href="/patakeja/plot-detail/{{plot.id}}">{{plot.name}} </a>available house-to-let :<strong>{{plot.availableHouses}}</strong> located at {{plot.location}}</p>
+{% endfor %}
+</div>
+
+</div>
+</div>
+</div>
+</div>
+<div class="row">
+<div class="col-md-12">
+<br><p class="text-center"><strong>Description</strong>:{{ house.house_desc }}</p></br>
+<p>house booked {{bookings}} times by:</p>
+{% for b in p %}
+<a href="/accounts/profile/{% decrement_id b.id %}">{{b.username}}</a>,
+{% endfor %}
+{% if request.user|member_of:"tenant" %}
+<p><a href="{% url "pata_keja:book" house.id%}"><button type="button" class="btn btn-success"> Book </button></a></p>
+{% endif %}
+<div class="col-md-4">
+<p ><h4 class="text-center">house photos<h4></p>
+<div class="thumbnail">
+<a href="/patakeja/house/{{house.id}}">
+<img src="{% if house.image %}{{ house.image.url }}{% else %}{% static "img/x.png" %}{% endif %} "height="200" width="200" >
+<img src="{% if house.image_2 %}{{ house.image_2.url }}{% else %}{% static "img/x.png" %}{% endif %} "height="200" width="210" >
+</a>
+</div>
+</div>
+<div class="col-md-4">
+{% with comments.count as total_comments %}
+        <h4 class="text-center">{{ total_comments }} comment{{ total_comments|pluralize }}</h4>
+    {% endwith %}
+    
+    {% for comment in comments %}
+        <div class="comment">
+            <p class="info">Comment {{ forloop.counter }} by {{ comment.name }} {{ comment.created }}</p>
+            {{ comment.body|linebreaks }}
+        </div>
+    {% empty %}
+        <p>There are no comments yet.</p>
+ {% endfor %}
+    
+    {% if new_comment %}
+		
+			
+        <h2>Your comment has been added.</h2>
+    {% else %}
+</div>
+
+{% if request.user|member_of:"tenant" %}
+<div class="col-md-4">
+
+        <h4>Add a new comment</h4>
+        <form action="." method="post">
+            {{ comment_form.as_p }}
+            {% csrf_token %}
+            <p><input type="submit" value="Add comment"></p>
+        </form>
+{%  endif %}   
+{%  endif %}
+
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<br><br>
+
+</body>
+{% endblock %}

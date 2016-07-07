@@ -1,0 +1,11 @@
+{% extends "dash.html" %}
+{% block title %}Edit your House{% endblock %}
+{% block content %}
+<h1>Edit your house</h1>
+<p>You can edit your house using the following form:</p>
+<form action="." enctype="multipart/form-data" method="post">{% csrf_token %}
+{{ form.as_p }}
+
+<p><input type="submit" value="Save changes"></p>
+</form>
+{% endblock %}

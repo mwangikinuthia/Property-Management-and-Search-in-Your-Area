@@ -1,0 +1,25 @@
+{% extends "dash.html" %}
+{% block title%}Log-in{% endblock%}
+
+{% block content %}
+<h1>Log-in</h1>
+{% if form.errors %}
+<p>Your username/password didnt match what we have</p>
+<p>Try again</p>
+{% else %}
+<p>Please, use the following form to log-in. If you don't have an
+account <a href="{% url "accounts:register" %}">register here</a></p>
+{% endif %}
+<p><a href="{% url "accounts:password_reset" %}">Forgotten your
+password?</a></p>
+<div class="login-form">
+<form action="{% url "accounts:login" %}" method="post">
+{{ form.as_p }}
+{% csrf_token %}
+<input type="hidden" name="next" value="{{ next }}"/>
+<p><input type="submit" value="Log-In"></p>
+
+
+</form>
+</div>
+{% endblock %} 

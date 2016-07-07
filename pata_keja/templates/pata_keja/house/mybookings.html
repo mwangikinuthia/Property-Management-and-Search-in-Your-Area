@@ -1,0 +1,19 @@
+{% extends "pata_keja/dash.html" %}
+{% load house_tags %}
+{% block title %}My bookings{% endblock %}
+
+{% block content %}
+<div class="container">
+<h3><p class="text-center">Not Approved</p></h3>
+{% for book in myBooking%}
+	<p class="text-center">booked by:<strong><a href="{% url "accounts:profile2" book.user_name %}">{{book.user_name}}</a></strong>  {{book.house_booked}} at {{book.booked_at}}</p>
+	<p class="text-center">
+	<a href="{% url "pata_keja:approve-booking" book.id %}"><button type="submit" class="btn btn-default"><span
+class="glyphicon glyphicon-login"></span> Approve</button></a> </p>
+{% endfor %}
+<h3><p class="text-center">Approved</p></h3>
+{% for book in approved %}
+<p class="text-center">booked by:<strong><a href="{% url "accounts:profile2" book.user_name %}">{{book.user_name}}</a></a></strong>  {{book.house_booked}} at {{book.booked_at}}</p>
+{% endfor %}
+</div>
+{% endblock %}

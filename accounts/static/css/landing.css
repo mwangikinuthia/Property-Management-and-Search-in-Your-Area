@@ -1,0 +1,16 @@
+.splash {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-image: url('/pata_keja/static/img/sofa.jpg');
+    background-size: 1440px 800px;
+    background-position: 50% 100%;
+background-repeat: no-repeat;
+bottom: 0;
+height: 100%;
+margin: auto;
+max-height: 461px;
+max-width: 1034px;
+position: absolute;
+width: 100%;
+}

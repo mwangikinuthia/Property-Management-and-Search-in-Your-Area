@@ -1,0 +1,27 @@
+{% extends "pata_keja/base.html" %}
+{% load staticfiles %}
+{% block title %}You Profile{% endblock %}
+{% block content%}
+<div class="container">
+<div class="col-md-24">
+<table class="table">
+<thead>
+<tr>
+<th>User_name</th>
+<th>Occupation</th>
+<th>Contanct</th>
+<th>Date of Birth</th>
+</tr>
+</thead>
+<tbody>
+<tr class="success">
+<td>{{my_profile.user}}</td>
+<td>{{my_profile.occupation}}</td>
+<td>0{{my_profile.contanct}}</td>
+<td>{{my_profile.date_of_birth}}</td>
+</tr>
+</tbody>
+</table>
+</div>
+{% endblock %}
+

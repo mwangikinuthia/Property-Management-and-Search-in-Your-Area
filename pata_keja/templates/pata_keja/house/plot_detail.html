@@ -1,0 +1,67 @@
+{% extends "pata_keja/base.html" %}
+{% load house_tags %}
+{% block title %}{{ house.house_location}}{% endblock %}
+
+{% block content %}
+<body id="data">
+<div class="container">
+<p class="text-center"><button type="button" class="btn btn-primary">{{plot.name}} {{plot.location}}</button></p>
+
+<p class="date">uploaded {{ plot.registered }}...</p>
+
+<div class="row">
+<div class="col-md-12">
+<div class="col-md-12">
+<table class="table">
+<thead>
+<tr>
+<th>Location</th>
+<th>security</th>
+<th>water-per-week</th>
+<th>Available houses</th>
+<th>Contanct Owner</th>
+</tr>
+</thead>
+<tbody>
+<tr class="success">
+<td>{{plot.location}}</td>
+<td>{{plot.location_security}}</td>
+<td>{{plot.water_availabity}}</td>
+<td>{{plot.availableHouses}}</td>
+<td>0{{plot.contanct}}</td>
+</tr>
+</tbody>
+</table>
+<table class="table">
+
+<thead>
+<tr>
+
+<th>Nyumba kumi rep</th>
+<th>Rating</th>
+<th>updated</th>
+<th>Number of houses/Rooms</th>
+</tr>
+</thead>
+<tbody>
+<tr class="active">
+
+<td>0{{plot.nyumba_kumi_rep}}</td>
+<td>{{plot.points}}</td>
+<td>{{plot.updated}}</td>
+<td>{{plot.No_of_houses}}</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+
+
+ 
+</div>
+</div>
+
+</body>
+{% endblock %}

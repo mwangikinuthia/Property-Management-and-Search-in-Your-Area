@@ -1,0 +1,21 @@
+{% extends "pata_keja/dash.html" %}
+
+{% block title %}Plots{% endblock %}
+
+{% block content %}
+    <p>you has <span class="badge">{{plot_num}}</span> listed plots.</p>
+	{% for plot in plots %}
+
+<p class="date">Created {{ plot.registered }}</p>
+<h4>{{plot.name}}</h4>
+<p>location:{{plot.location}}</p>
+<p>water:{{plot.water_availabity}}</p>
+<p>contanct:{{plot.contanct}}</p>
+<p>available houses/rooms:{{plot.availableHouses}}</p>
+<p>nyumba kumi rep contanct:{{nyumba_kumi_rep}}</p>
+<p>updated:{{plot.updated}}</p>
+
+<p>{% endfor %}</p>
+    
+    {% include "pagination.html" with page=plots %}
+{% endblock %}

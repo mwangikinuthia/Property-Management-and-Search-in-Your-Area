@@ -1,0 +1,11 @@
+{% extends "pata_keja/dash.html" %}
+
+{% block title %}Approve Booking{% endblock %}
+
+{% block content %}
+You have succesfully approved this booking
+<p>The house booked is no longer available</p>
+
+ {{book}}
+{{plot.availableHouses}}
+{% endblock %}

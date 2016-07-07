@@ -1,0 +1,18 @@
+{% extends "pata_keja/dash.html" %}
+
+{% block title %}bookings{% endblock %}
+
+{% block content %}
+
+{% for booking in bookings %}
+{% if booking.approved %}
+Your Booking for this house <a href="{% url "pata_keja:pata" booking.house_booked_id %}">{{booking.house_booked}}</a> was Approved
+<p>All other bookings were cancelled</p>
+<p>thank you for using our app to find a better places to live</p>
+{% else %}
+<ul>
+<strong>{{booking.booked_at}} </strong><a href="/patakeja/house/{{booking.house_booked_id}}">{{booking.house_booked}} house</a><button type="button" class="btn btn-primary"><a href="/patakeja/cancel-booking/{{booking.id}}">Cancel</a></button>
+</ul>
+{% endif %}
+{% endfor %}
+{% endblock %} 

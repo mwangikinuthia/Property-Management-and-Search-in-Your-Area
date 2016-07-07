@@ -1,0 +1,49 @@
+{% load house_tags %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>{% block title %}{% endblock %}</title>
+    <link href="{% static "css/base.css" %}" rel="stylesheet">
+</head>
+<body>
+    <div id="header">
+        <span class="logo">House Portal</span>
+        {% if request.user.is_authenticated %}
+        <ul class="menu">
+            
+            <li {% if section == "Add house" %}class="selected"{% endif %}><a href="/patakeja/add">Add House</a></li>
+            <li {% if section == "Add plot" %}class="selected"{% endif %}><a href="/patakeja/caretakers/add-plot">Add Plot</a></li>
+			<li {% if section == "Houses list" %}class="selected"{% endif %}><a href="/patakeja">Houses</a></li>
+			<li {% if section == "caretaker list" %}class="selected"{% endif %}><a href="/patakeja/caretakers">Caretakers</a></li>			
+        </ul>
+        {% endif %}
+
+        <span class="user">
+        {% if request.user.is_authenticated %}
+			
+            Hello <a href="{% url "accounts:edit" %}">{{ request.user.first_name }}</a>, <a href="{% url "accounts:logout" %}">Logout</a>
+        {% else %}
+            <a href="{% url "accounts:login" %}">Log-in</a>
+        {% endif %}
+        </span>
+    </div>
+
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li class="{{ message.tags }}">
+                    {{ message|safe }}
+                    <a href="#" class="close">×</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    <div id="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+</html>
