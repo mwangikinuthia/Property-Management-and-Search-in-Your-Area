@@ -39,6 +39,7 @@ def house_points(house):
     return points
 
 def house_ranking():
+	""" property rank""""
     houses_id=[]
     houses=houseDesc.approved.all()
     for house in houses:
