@@ -1,4 +1,4 @@
-This app is used for managing rental properties.It makes it convinient for Tenants to be able to access your property online and make
+This web app can used for managing rental properties.It makes it convinient for Tenants to be able to access your property online and make
 bookings.This saves time to avoid future tenents from walking around estates to physicaly find places to rent.
 Houses are uploaded by caretakers/managers.They must include at least two photos,contanct and location.
 Future feutures such as us of googlemaps arent yet implimented. 
