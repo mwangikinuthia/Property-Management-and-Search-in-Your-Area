@@ -3,8 +3,8 @@ from .models import houseDesc,Plot
 
 
 class HouseIndex(indexes.SearchIndex, indexes.Indexable):
-    #text field is what the user inputs,document=Trues specifies is the field will be getting our query from
-    #Each item queried will come with a signature of when it was registered
+    # text field is what the user inputs,document=Trues specifies is the field will be getting our query from
+    # Each item queried will come with a signature of when it was registered
     text=indexes.CharField(document=True, use_template=True)
     registered=indexes.DateTimeField(model_attr='created')
 

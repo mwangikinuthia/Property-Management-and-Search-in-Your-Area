@@ -1,8 +1,8 @@
 from django.conf.urls import url
 from . import views
-#maps url patterns to viewa
+# maps url patterns to viewa
 urlpatterns=[
-#url(r'^login/$',views.user_log, name='login'),
+# url(r'^login/$',views.user_log, name='login'),
 url(r'^register/$',views.register,name='register'),
 url(r'^login/$', views.user_log, name='login'),
 url(r'^logout/$','django.contrib.auth.views.logout', name='logout'),

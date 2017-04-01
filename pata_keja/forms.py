@@ -1,4 +1,4 @@
-'''Manages how forms are displayed, initial data they contain and widgets attributes eg hidden'''
+""" Manages how forms are displayed, initial data they contain and widgets attributes eg hidden  """
 from .models import Comment, houseDesc,houseManager,Plot,booking
 from django import forms
 
@@ -54,12 +54,10 @@ class houseDeleteForm(forms.ModelForm):
         model = houseDesc
         fields = []
 
-
 class houseeditForm(forms.ModelForm):
     class Meta:
         model=houseDesc
         fields=('rent_per_month', 'house_bills','house_booked')
-
 
 
 class SearchForm(forms.Form):

@@ -19,7 +19,6 @@ in searching our houses and plots will be using a third-party extension solr-apa
 requirements:
 Java Runtime Enviroment version 1.7 or higher you can download it from http://www.oracle.com/technetwork/java/javase/downloads/index.html .
 Solr version 4.10.4 or get it from http://archive.apache.org/dist/lucene/solr/
-django-haystack pip install django-haystack==2.4.0
 
 Unzip the downloaded file and go
 to the example directory within the Solr installation directory (that is, cd solr-

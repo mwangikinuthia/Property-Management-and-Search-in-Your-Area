@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User
-#add an email backend so as the users can log in with username or email
+# add an email backend so as the users can log in with username or email
 
 
 class EmailAuthBackend(object):
