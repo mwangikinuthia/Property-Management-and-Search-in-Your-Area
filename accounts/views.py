@@ -14,8 +14,8 @@ def user_log(request):
     if request.method:
         form = LoginForm(request.POST)
         if form.is_valid():
-            cleandata=form.cleaned_data
-			#authenticate checks if credentials exists in db
+            cleandata = form.cleaned_data
+            # Authenticate checks if credentials exists in db
             user=authenticate(username=cleandata['username'],
                               password=cleandata['password'])
             if user is not None:
@@ -61,9 +61,8 @@ def register(request):
             new_user=user_form.save(commit=False)
             new_user.set_password(user_form.cleaned_data['password'])
             new_user.save()
-	    profile=Profile.objects.create(user=new_user)#creates a blank profile
-	    new_user.groups.add(Group.objects.get(name='tenant'))
-            
+            profile=Profile.objects.create(user=new_user)#creates a blank profile
+            new_user.groups.add(Group.objects.get(name='tenant'))
             return render(request, 'registration/register_done.html',{'new_user':new_user})
         
         else:
